@@ -20,11 +20,15 @@ class MyClient(discord.Client):
 
             length = args[1]
             if not str.isdecimal(length):
-                await message.channel.send("数値を入力してください。")
+                await message.channel.send("整数を入力してください。")
                 return
 
             if int(length) <= 0:
                 await message.channel.send("1以上の数値を入力してください。")
+                return
+
+            if int(length) > 2000:
+                await message.channel.send("2000以下の数値を入力してください。")
                 return
 
             password = await generate_password(int(length))
